@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+{% block content %}
+{{ city.name }}
+
+<p>
+   Most recent: {{ info.first.date }}, {{ info.first.temperature }}°C, {{ info.first.weather }}, {{ info.first.comment}}
+</p>
+<p>
+  Oldest: {{ info.first.date }}, {{ info.last.temperature }}°C, {{ info.last.weather }}, {{ info.last.comment}}
+</p>
+
+<form method="post">
+    {% csrf_token %}
+    {{ form }}
+    <input type="submit" value="Submit" />
+</form>
+{% endblock %}

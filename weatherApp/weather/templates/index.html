@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+{% block content %}
+<h1> wheaterApp </h1>
+<div class "row horizontal-align">
+  {% for city in citys %}
+  <div class="col-sm-4">
+    <a href="{{ city.name }}">{{ city.name }}</a>
+    <p>
+      {{ city.cWeather.temperature }} °C
+    </p>
+  </div>
+  {% endfor %}
+</div>
+{% endblock %}
