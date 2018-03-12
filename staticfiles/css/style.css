@@ -17,8 +17,8 @@ body {
 .thumbnail {
   max-width: 100%;
   height: auto;
-  border-radius: 90%;
-  border: 2px solid #008080;
+  border-radius: 1000%;
+  border: 1px solid #008080;
   -webkit-box-shadow: 6px 14px 45px -1px rgba(0,0,0,0.48);
   -moz-box-shadow: 6px 14px 45px -1px rgba(0,0,0,0.48);
   box-shadow: 6px 14px 45px -1px rgba(0,0,0,0.48);
@@ -95,7 +95,20 @@ img#weather {
   padding: 10vh;
 }
 
+.form * label {
+  width: 30%;
+}
+
+.form p {
+  text-align: center;
+}
+
+select, input {
+  width: 25%;
+}
+
 .form {
+  margin: 0 auto;
   color: #330066;
 }
 
