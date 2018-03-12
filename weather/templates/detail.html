@@ -7,12 +7,9 @@
     <h1 id = "detail">Current weather information in <span class = "header">{{ city.name }}</span></h1>
 
     <div class="row">
-      <div class ="col">
-        <div class = "cont">
-            <img class = "circle" src = "{{ city.img }}" height=300px />
-        </div>
+      <div class ="col s">
+            <img class = "circle" src = "{{ city.img }}" />
       </div>
-
       <div class = "vl"></div> <!-- line between infos -->
 
       <div class="col">
@@ -24,8 +21,9 @@
             <div class = "row">
               <div class = "col">
                 <div class = "cont">
-                  <img id = "weather" src = "{% static 'img/weather/sunny.png' %}" height=100px />
                   <h1 id = "temperature">{{ city.cWeather.temperature}}°C</h1>
+                  <img id = "weather" src = "{% static 'img/weather/sunny.png' %}" height=100px />
+
               </div>
               <small class = "date">{{ city.cWeather.date}}</small>
           </div>
@@ -61,13 +59,13 @@
             {% endif %}
             <!-- lates weather information -->
             {%  if info %}
-            
+
             </div>
             <div class = "latest">
               <h3>Last 24 hours</h3>
 
-              <small>Most recent: {{ info.first.date }}, {{ info.first.temperature }}°C, {{ info.first.weather }}</small>
-              <small>Oldest: {{ info.first.date }}, {{ info.last.temperature }}°C, {{ info.last.weather }}</small>
+              <small>Most recent: {{ info.first.temperature }}°C, {{ info.first.weather }}, {{ info.first.date }}</small><br />
+              <small>Oldest: {{ info.last.temperature }}°C, {{ info.last.weather }}, {{ info.first.date }}</small>
             </div>
 
               </div>
@@ -87,8 +85,8 @@
         <div class="col">
           <div class = "city">
             <p class = "lead text-center">{{ cit.name }}</p>
-            <a href="{{ cit.name }}">
-              <img src="{{ cit.img }}" class="circle" height = 100 width = 100/>
+            <a href="{{ cit.pk}}">
+              <img src="{{ cit.img }}" class="thumbnail"/>
             </a>
             <br />
             <br />
@@ -101,16 +99,17 @@
   </div>
 </div>
 
-<!-- Form to adding a new citing -->
+<!-- Form to adding a new sighting -->
 <div class = "add">
   <div class = "container">
-    <h2 class = "text-center">Add new citing</h2>
+    <h2 class = "text-center">Add new sighting</h2>
     <br />
     <div class = "form">
       <form method="post">
           {% csrf_token %}
-          {{ form }}
-          <input type="submit" value="Submit" />
+          {{ form.as_p}}
+          <br />
+          <input class="btn btn-outline-success" type="submit" value="Add new sighting" />
       </form>
     </div>
 
@@ -118,10 +117,10 @@
   </div>
 
 
-<!-- All citings in a table -->
-<div class = "citings">
+<!-- All sightings in a table -->
+<div class = "sightings">
   <div class = "container">
-    <h3>All citings</h3>
+    <h3>All sightings</h3>
     <table class="table table-striped" >
       <thead>
         <tr>

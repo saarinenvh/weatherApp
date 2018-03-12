@@ -1,18 +1,20 @@
 {% extends 'base.html' %}
 {% block content %}
+
+
+
 <div class="container">
-
-
 <p id = "hid" class = "lead"> Welcome to use the <span class = "header">weatherApp</span></p>
 <h3 id = "subtitle">Please choose your location.</h3>
-<div class = "cities">
+<br />
+<br />
   <div class="row">
       {% for city in citys %}
       <div class="col">
         <div class = "city">
           <p class = "lead text-center">{{ city.name }}</p>
           <a href="{{ city.pk }}">
-            <img src="{{ city.img }}" class="circle" height = 100 width = 100/>
+            <img src="{{ city.img }}" class="thumbnail"/>
           </a>
           <br />
           <br />
