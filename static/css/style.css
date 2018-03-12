@@ -71,11 +71,10 @@ h3, h2, h1, p {
 }
 
 img#weather {
-  display: inline-block;
+  display: block;
   float:right;
-  max-width: 50%;
-  margin: 0 auto;
-  margin-right: 3vw;
+  max-width: 70%;
+  margin: auto;
 }
 
 #temperature {
@@ -150,8 +149,9 @@ img#weather {
   .vl{display: none;}
   .s{display: none;}
   .cont{display: block;}
-  #temperature{display: inline; width: 100%; margin: auto;}
-  img#weather{width: 100%; margin-right: 10vw; margin-left: 10vw;}
+  #temperature{width: 100%; text-align: center;}
+  img#weather{display: block; width: 100%; margin-right: 20%; margin-left: 20%;}
+  h1#detail{text-align: center;}
 
 }
 
