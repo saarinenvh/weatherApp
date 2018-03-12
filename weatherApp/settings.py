@@ -23,15 +23,9 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = '$!z7x7bt+4_f_-=&i0=$&#z@9!$a+q_&0dp7@in9s&uu&pi1-2'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
-DATABASES = {
-    'default': dj_database_url.config(
-        default=config('DATABASE_URL')
-    )
-}
-
-ALLOWED_HOSTS = ['weatherappproject.herokuapp.com']
+ALLOWED_HOSTS = []
 
 
 # Application definition
@@ -131,4 +125,3 @@ STATICFILES_DIRS = (
 )
 
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
-STATICFILES_STORAGE = 'whitenoise.django.GzipManifestStaticFilesStorage'
