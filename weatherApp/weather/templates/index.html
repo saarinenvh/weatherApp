@@ -1,14 +1,27 @@
 {% extends 'base.html' %}
 {% block content %}
-<h1> wheaterApp </h1>
-<div class "row horizontal-align">
-  {% for city in citys %}
-  <div class="col-sm-4">
-    <a href="{{ city.name }}">{{ city.name }}</a>
-    <p>
-      {{ city.cWeather.temperature }} °C
-    </p>
+<div class="container">
+
+<p id = "hid" class = "lead"> Welcome to use the <span class = "header">wheaterApp</span></p>
+<h3 id = "subtitle">Please choose your location.</h3>
+<div class = "cities">
+  <div class="row">
+      {% for city in citys %}
+      <div class="col">
+        <div class = "city">
+          <p class = "lead text-center">{{ city.name }}</p>
+          <a href="{{ city.name }}">
+            <img src="{{ city.img }}" class="circle" height = 100 width = 100/>
+          </a>
+          <br />
+          <br />
+          <p class = "lead text-center">{{ city.cWeather.temperature }} °C </p>
+        </div>
+
+      </div>
+      {% endfor %}
+    </div>
   </div>
-  {% endfor %}
+
 </div>
 {% endblock %}

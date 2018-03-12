@@ -1,17 +1,147 @@
 {% extends 'base.html' %}
 {% block content %}
-{{ city.name }}
 
-<p>
-   Most recent: {{ info.first.date }}, {{ info.first.temperature }}°C, {{ info.first.weather }}, {{ info.first.comment}}
-</p>
-<p>
-  Oldest: {{ info.first.date }}, {{ info.last.temperature }}°C, {{ info.last.weather }}, {{ info.last.comment}}
-</p>
+<!-- Weather information and photo -->
+<div class = "local">
+  <div class = "container">
+    <h1 id = "detail">Current weather information in <span class = "header">{{ city.name }}</span></h1>
 
-<form method="post">
-    {% csrf_token %}
-    {{ form }}
-    <input type="submit" value="Submit" />
-</form>
-{% endblock %}
+    <div class="row">
+      <div class ="col">
+        <div class = "cont">
+            <img class = "circle" src = "{{ city.img }}" height=300px />
+        </div>
+      </div>
+
+      <div class = "vl"></div> <!-- line between infos -->
+
+      <div class="col">
+        <div class = "info">
+
+            <!-- right photo for the right weather -->
+            {% load static %}
+            {% if city.cWeather.weather == 'sunny' %}
+            <div class = "row">
+              <div class = "col">
+                <div class = "cont">
+                  <img id = "weather" src = "{% static 'img/weather/sunny.png' %}" height=100px />
+                  <h1 id = "temperature">{{ city.cWeather.temperature}}°C</h1>
+              </div>
+              <small class = "date">{{ city.cWeather.date}}</small>
+          </div>
+
+            {% elif city.cWeather.weather == 'cloudy' %}
+            <div class = "row">
+              <div class = "col">
+                <div class = "cont">
+                  <img id = "weather" src = "{% static 'img/weather/cloudy.png' %}" height=100px />
+                  <h1 id = "temperature">{{ city.cWeather.temperature}}°C</h1>
+              </div>
+              <small class = "date">{{ city.cWeather.date}}</small>
+          </div>
+
+            {% elif city.cWeather.weather == 'misty' %}
+            <div class = "row">
+              <div class = "col">
+                <div class = "cont">
+                  <img id = "weather" src = "{% static 'img/weather/misty.png' %}" height=100px />
+                  <h1 id = "temperature">{{ city.cWeather.temperature}}°C</h1>
+              </div>
+              <small class = "date">{{ city.cWeather.date}}</small>
+          </div>
+            {% else %}
+            <div class = "row">
+              <div class = "col">
+                <div class = "cont">
+                  <img id = "weather" src = "{% static 'img/weather/rainy.png' %}" height=100px />
+                  <h1 id = "temperature">{{ city.cWeather.temperature}}°C</h1>
+              </div>
+              <small class = "date">{{ city.cWeather.date}}</small>
+          </div>
+            {% endif %}
+            <!-- lates weather information -->
+            {%  if info %}
+            <br />
+            </div>
+            <div class = "latest">
+              <h3>Last 24 hours</h3>
+
+              <small>Most recent: {{ info.first.date }}, {{ info.first.temperature }}°C, {{ info.first.weather }}</small>
+              <small>Oldest: {{ info.first.date }}, {{ info.last.temperature }}°C, {{ info.last.weather }}</small>
+            </div>
+
+              </div>
+            {% endif %}
+          </div>
+        </div>
+      </div>
+    </div>
+    </div>
+  </div>
+
+  <!-- Navigation through cities -->
+  <div class = "cities" id = "citiesDetail">
+    <div class="container">
+      <div class="row">
+        {% for cit in citys %}
+        <div class="col">
+          <div class = "city">
+            <p class = "lead text-center">{{ cit.name }}</p>
+            <a href="{{ cit.name }}">
+              <img src="{{ cit.img }}" class="circle" height = 100 width = 100/>
+            </a>
+            <br />
+            <br />
+            <p class = "lead text-center">{{ cit.cWeather.temperature }} °C </p>
+          </div>
+        </div>
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Form to adding a new citing -->
+<div class = "add">
+  <div class = "container">
+    <h2 class = "text-center">Add new citing</h2>
+    <br />
+    <div class = "form">
+      <form method="post">
+          {% csrf_token %}
+          {{ form }}
+          <input type="submit" value="Submit" />
+      </form>
+    </div>
+
+  </div>
+  </div>
+
+
+<!-- All citings in a table -->
+<div class = "citings">
+  <div class = "container">
+    <h3>All citings</h3>
+    <table class="table table-striped" >
+      <thead>
+        <tr>
+          <th scope="col">Date</th>
+          <th scope="col">Temperature</th>
+          <th scope="col">Weather</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for inf in info %}
+        <th scope="row">{{ inf.date }}</th>
+        <td>{{ inf.temperature}}</td>
+        <td>{{ inf.weather}}</td>
+
+      </tbody>
+      {% endfor %}
+    </table>
+
+  </div>
+
+</div>
+
+  {% endblock %}

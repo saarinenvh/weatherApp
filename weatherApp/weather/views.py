@@ -12,7 +12,7 @@ def index(request):
     return render(request, 'index.html', {'citys': citys})
 
 def detail(request, name):
-
+    citys = models.City.objects.all()
     city = models.City.objects.get(name = name)
     date_from = datetime.datetime.now() - datetime.timedelta(days=1)
     info = models.WeatherInfo.objects.filter(city=city, date__gte = date_from).order_by('-date')
@@ -30,4 +30,4 @@ def detail(request, name):
     else:
         form = forms.addInfo
 
-    return render(request, 'detail.html', {'info': info, 'city': city, 'form': form})
+    return render(request, 'detail.html', {'info': info, 'city': city, 'form': form, 'citys': citys})
