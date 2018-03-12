@@ -10,7 +10,7 @@ class City(models.Model):
     lat = models.FloatField()
     lon = models.FloatField()
     slug = models.SlugField(max_length=50);
-    cWeather = models.ForeignKey('weatherInfo', on_delete=models.CASCADE, related_name='currentWeather', blank = True)
+    cWeather = models.ForeignKey('weatherInfo', on_delete=models.CASCADE, related_name='currentWeather', null = True)
     img = models.URLField(max_length=200);
 
     def __str__(self):
