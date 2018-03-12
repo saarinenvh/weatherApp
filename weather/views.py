@@ -27,7 +27,7 @@ def detail(request, pk):
             temperature = form.cleaned_data['temperature']
             weather = form.cleaned_data['weather']
             comment = form.cleaned_data['comment']
-            entry = models.WeatherInfo(city = city, temperature = temperature, weather = weather, comment = comment, date=datetime.datetime.now(tz=timezone.utc))
+            entry = models.WeatherInfo(city = currentCity, temperature = temperature, weather = weather, comment = comment, date=datetime.datetime.now(tz=timezone.utc))
             entry.save()
             currentCity.cWeather = entry
             currentCity.save()
