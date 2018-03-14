@@ -20,6 +20,7 @@ def detail(request, pk):
     currentCity = City.objects.get(pk = pk)
     date_from = datetime.datetime.now() - datetime.timedelta(days=1)
     info = WeatherInfo.objects.filter(city=currentCity, date__gte = date_from).order_by('-date')
+    allInfo = WeatherInfo.objects.filter(city=currentCity).order_by('-date')
 
     if request.method == 'POST':
         form = forms.addInfo(request.POST)
@@ -34,4 +35,4 @@ def detail(request, pk):
     else:
         form = forms.addInfo
 
-    return render(request, 'detail.html', {'info': info, 'city': currentCity, 'form': form, 'citys': citys})
+    return render(request, 'detail.html', {'allInfo': allInfo, 'info': info, 'city': currentCity, 'form': form, 'citys': citys})

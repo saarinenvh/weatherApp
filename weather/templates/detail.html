@@ -60,13 +60,15 @@
             {% endif %}
 
             <!-- lates weather information -->
-            {%  if info %}
+
             </div>
             <div class = "latest">
               <h3>Last 24 hours</h3>
-
+            {%  if info %}
               <small>Most recent: {{ info.first.temperature }}°C, {{ info.first.weather }}, {{ info.first.date }}</small><br />
               <small>Oldest: {{ info.last.temperature }}°C, {{ info.last.weather }}, {{ info.last.date }}</small>
+            {% else %}
+              <small>No sightings in the last 24 hours.</small>
             </div>
               </div>
             {% endif %}
@@ -129,7 +131,7 @@
         </tr>
       </thead>
       <tbody>
-        {% for inf in info %}
+        {% for inf in allInfo %}
         <th scope="row">{{ inf.date }}</th>
         <td>{{ inf.temperature}}</td>
         <td>{{ inf.weather}}</td>
